@@ -1,26 +1,13 @@
-# Create vector for card draw --------------------------------------------------
-deck <- c(rep.int('Ace', 4), 
-              rep.int(as.character(2:10), 4), 
-              rep.int('Face', 12))
-restore_deck <- function()
-deck
-s <- sample(x = deck, size = 2, replace = FALSE)
-s
-remove_cards <- function(deck_var, sample_var){
-  deck_var <- deck_var[-(which(deck_var %in% sample_var[1])[1])]
-  deck_var <- deck_var[-(which(deck_var %in% sample_var[2])[1])]
-  return(deck_var)
-}
-deck <- remove_cards(deck,s)
-deck
-n = 1000
-pb = txtProgressBar(min = 0, max = n, initial = 0, style = 3) 
-for (i in 1:n){
-  hands <- c(hands,sample(x = deck, size = 2, replace = FALSE))
-  setTxtProgressBar(pb,i)
-}
-table(hands)
+# Add functions to environment
+library(zeallot)
+source('create_functions.R')
 
 # Initialize dealer and player hands -------------------------------------------
+player <- c()
+dealer <- c()
+deck <- restore_deck()
 
-# remove drawn cards from deck between re drawings
+c(player,deck) %<-% draw_cards(player,deck,1) # %<-% operator from zeallot package
+c(dealer,deck) %<-% draw_cards(dealer,deck,1)
+c(player,deck) %<-% draw_cards(player,deck,1) 
+c(dealer,deck) %<-% draw_cards(dealer,deck,1) 

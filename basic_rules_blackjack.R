@@ -11,3 +11,7 @@ c(player,deck) %<-% draw_cards(player,deck,1) # %<-% operator from zeallot packa
 c(dealer,deck) %<-% draw_cards(dealer,deck,1)
 c(player,deck) %<-% draw_cards(player,deck,1) 
 c(dealer,deck) %<-% draw_cards(dealer,deck,1) 
+
+# Check for initial victory ----------------------------------------------------
+continue <- blackjack(player,dealer)
+

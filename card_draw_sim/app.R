@@ -4,7 +4,7 @@ library(shiny)
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Blackjack"),
+  titlePanel("Card Drawing"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
@@ -32,8 +32,8 @@ server <- function(input, output) {
     output$distPlot <- renderPlot({
       # generate bins based on input$bins from ui.R
       draw <- c(rep.int('Ace', 4), 
-                rep.int(as.character(2:10), 4), 
-                rep.int('Face', 12))
+                rep.int(as.character(2:9), 4), 
+                rep.int('10', 16))
       hands <- c()
       for (i in 1:input$n){
         s <- sample(x = draw, size = input$size, replace = FALSE)
